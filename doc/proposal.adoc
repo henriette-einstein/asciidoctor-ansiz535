@@ -7,9 +7,10 @@ support for the https://en.wikipedia.org/wiki/ANSI_Z535[ANSI Z535] standard (esp
 According to Wikipedia,
 
 [quote, Wikipedia definition]
-----
-ANSI Z535 is an American standard that sets forth a system for presenting safety and accident prevention information. It corresponds to the international ISO 3864 standard.
-----
+____
+ANSI Z535 is an American standard that sets forth a system for presenting safety 
+and accident prevention information. It corresponds to the international ISO 3864 standard.
+____
 
 It consist of six individual sub-standards, that regulate various aspects for the
 documentation of safety and accident prevention information.
