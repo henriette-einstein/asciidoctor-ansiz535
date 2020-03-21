@@ -1,0 +1,107 @@
+= AsciiDoctor and ANSI Z535
+
+This is a proposal for a custom extension of https://asciidoctor.org[AsciiDoctor] that provides
+support for the https://en.wikipedia.org/wiki/ANSI_Z535[ANSI Z535] standard (especially ANSI Z535.6 that defines requirements for technical documentation).
+
+== What is ANSI Z535
+According to Wikipedia,
+
+[quote, Wikipedia definition]
+----
+ANSI Z535 is an American standard that sets forth a system for presenting safety and accident prevention information. It corresponds to the international ISO 3864 standard.
+----
+
+It consist of six individual sub-standards, that regulate various aspects for the
+documentation of safety and accident prevention information.
+
+== Why is that important for AsciiDoctor
+ANSI Z535 and especially ANSI Z535.6 "American National Standard for Product Safety Information in Product Manuals, Instructions, and Other Collateral Materials" defines a set of legal rules, that technical writers have to adhere to write documentation that complies to legal rules.
+
+AsciiDoctor would be perfectly suited for technical documentation. However support for ANSI Z535 is
+not implemented and the Admonitions defined in AsciiDoc *do not fullfill* the requirements.
+
+To write ANSI Z535 compliant documentation, every author using AsciiDoctor would have to fiddle around with custom extensions, custom CSSes to produce compliant HTML. However, even that would not be sufficient, to produce compliant output in other output-formats like PDF. Most
+technical authors are not willing or not capable to implement such customizings and therefore 
+seek other solutions to write ANSI Z535 compliant documents.
+
+The required extensions to support ANSI Z535 should therefore be implemented as an open source extension, that is available for everybody to download and use.
+
+== Scope of the ANSI Z535 Standard
+The ANSI Z535 standard defines a lot of things, that not all have to do with documentation. 
+This section describes the relevant components, that should be supported by AsciiDoctor.
+
+=== Colors
+The standard *ANSI Z535.1-2017* defines the following colors:
+
+|===
+| Name | Pantone | RGG | RGB hex
+
+| Red | 186 C | rgb(200, 16, 46) | #C8102E
+| Orange | 151 C | rgb(255, 130, 0) | #FF8200
+| Yellow | 109 C | rgb(255, 209, 0) | #FFD100
+| Green | 335 C | rgb(0, 123, 95) | #007B5F
+| Blue | 285 C | rgb(0, 114, 206) | #0072CE
+| Purple | 259 C | rgb(109, 32, 119) | #6D2077
+
+|===
+
+These colors are primarlily used for signal words in technical documentation and product safety signs.
+
+For further Information: https://www.nema.org/standards/complimentarydocuments/ansi%20z535_1-2017%20contents%20and%20scope.pdf[American National Standard for Safety Colors]
+
+=== Signal Words
+ANSI Z535 defines the signal words
+
+* DANGER
+* WARNING
+* CAUTION
+* NOTICE
+
+There are also rules, which signal word has to be used in certain situations. For example, the signal word "DANGER" must be used if the documented object can cause accidents and these accidents
+can cause a deadly result.
+
+The rules are out of the scope of this document. What is important is, that 
+
+* there is a defined set of signal words
+* there are defined translations for these signal words in different languages
+
+Here is an extract of the translations
+
+|===
+| Language | DANGER | WARNING | CAUTION | NOTICE
+
+| German | GEFAHR | WARNUNG | VORSICHT | HINWEIS
+| French | DANGER | AVERTISSEMENT | ATTENTION | AVIS
+| Spanish | PELIGRO | ADVERTENCIA | ATENCION | AVISO
+|===
+
+Other translations exist and may be supported. Since I am not familiar with these languages, I'll
+skip that here.
+
+=== Signal Panels
+
+== Support of the ANSI Z535 Standard in AsciiDoctor
+
+=== Suport of ANSI Z535.1 Colors
+The SCSS-files of AsciiDoctor should include variable definitions for the defined colors. These 
+variable should be named `$ansi-{uncapitalized name of the color}`
+
+|===
+| Name | Variable 
+
+| Red | $ansi-red
+| Orange | $ansi-orange
+| Yellow | $ansi-yellow
+| Green | $ansi-green
+| Blue | $ansi-blue
+| Purple | $ansi-purple
+|===
+
+
+== References
+
+* https://en.wikipedia.org/wiki/ANSI_Z535
+* https://www.appliedsafety.com/wp-content/uploads/2011/08/ansi_z535dot6_article.pdf
+* https://www.nema.org/Standards/z535/Documents/Communicator_article_p14-16.pdf
+* https://medium.com/@malcolm.abbott/the-ansi-z535-standards-and-their-scope-ad8d7b21c85a
+* https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=11&ved=2ahUKEwiN7tmcsanoAhWKYcAKHSYzCBk4ChAWMAB6BAgFEAE&url=https%3A%2F%2Fwww.schmeling-consultants.de%2Fnc%2Fpublikationen%2F%3Ffd%3DNORM_14_Schmeling_Sicherheitshinweise_Praxis.pdf&usg=AOvVaw38vR4dFqiQEFHtCW-bMEil
