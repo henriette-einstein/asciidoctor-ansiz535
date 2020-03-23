@@ -245,15 +245,8 @@ To change the language for the signal word, the following additional classes are
 
 === Example
 
-[source, html]
-----
-<h2>Simple Usage</h2>
-<p><span class="ansi-danger"/></p>
-<p><span class="ansi-warning"/></p>
-<p><span class="ansi-caution"/></p>
-<p><span class="ansi-notice"/></p>
-<p><span class="ansi-safety-instructions"/></p>
-----
+The file Z535-Overview-styles.html shows how to use the CSS classes. The rendered output in the
+browser is documented in the file Z535-Overview-styles.png.
 
 == References
 
