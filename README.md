@@ -1,5 +1,9 @@
 # asciidoctor-ansiz535
 
+> [!WARNING]
+> This is a preliminary version that may not work by now. Please
+> be patient until the final version arrives
+
 AsciiDoctor support for ANSI Z535
 
 ## Installation
