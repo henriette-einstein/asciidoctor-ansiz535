@@ -1,0 +1,178 @@
+$ansi-red: #c8102e;
+$ansi-orange: #ff8200;
+$ansi-yellow: #ffd100;
+$ansi-green: #007b5f;
+$ansi-blue: #0072ce;
+$ansi-purple: #6d2077;
+
+$ansi-safety-word-font: Arial, Helvetica, sans-serif;
+
+%panel {
+  display: inline-flex;
+  align-items: center;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  padding-top: 0.1em;
+  padding-bottom: 0.1em;
+  font-family: $ansi-safety-word-font;
+  font-weight: bold;
+  text-transform: uppercase;
+
+  &.ansi-style-border {
+    border: 1px solid black;
+  }
+
+  &.ansi-style-bw {
+    color: black;
+    background-color: white;
+  }
+
+  &.ansi-style-wb {
+    color: white;
+    background-color: black;
+  }
+}
+
+%image {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+  content: "\00a0";
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  margin-right: 0.1em;
+}
+
+%black-image {
+  @extend %image;
+  background-image: url(ANSI-Z535_black_solid_transparent.svg);
+  &.ansi-style-wb::before {
+    background-image: url(ANSI-Z535_white_solid_transparent.svg);
+  }
+}
+
+%white-image {
+  @extend %image;
+  background-image: url(ANSI-Z535_white_solid_transparent.svg);
+  &.ansi-style-wb::before {
+    background-image: url(ANSI-Z535_black_solid_transparent.svg);
+  }
+}
+
+span {
+  &.ansi-alert-black::before {
+    @extend %image;
+    background-image: url(ANSI-Z535_black_transparent.svg);
+  }
+  &.ansi-alert-black-solid::before {
+    @extend %image;
+    background-image: url(ANSI-Z535_black_solid_transparent.svg);
+  }
+  &.ansi-alert-white::before {
+    @extend %image;
+    background-image: url(ANSI-Z535_white_transparent.svg);
+  }
+  &.ansi-alert-white-solid::before {
+    @extend %image;
+    background-image: url(ANSI-Z535_white_solid_transparent.svg);
+  }
+
+  /** Panels */
+  &.ansi-danger {
+    @extend %panel;
+    color: white;
+    background-color: $ansi-red;
+    &::before {
+      @extend %white-image;
+    }
+    &::after {
+      content: "DANGER";
+    }
+    &.ansi-lang-de::after {
+      content: "GEFAHR";
+    }
+    &.ansi-lang-fr::after {
+      content: "DANGER";
+    }
+    &.ansi-lang-es::after {
+      content: "PELIGRO";
+    }
+  }
+
+  &.ansi-warning {
+    @extend %panel;
+    color: black;
+    background-color: $ansi-orange;
+    &::before {
+      @extend %black-image;
+    }
+    &::after {
+      content: "WARNING";
+    }
+    &.ansi-lang-de::after {
+      content: "WARNUNG";
+    }
+    &.ansi-lang-fr::after {
+      content: "AVERTISSEMENT";
+    }
+    &.ansi-lang-es::after {
+      content: "ADVERTENCIA";
+    }
+  }
+  &.ansi-caution {
+    @extend %panel;
+    color: black;
+    background-color: $ansi-yellow;
+    &::before {
+      @extend %black-image;
+    }
+    &::after {
+      content: "CAUTION";
+    }
+    &.ansi-lang-de::after {
+      content: "VORSICHT";
+    }
+    &.ansi-lang-fr::after {
+      content: "ATTENTION";
+    }
+    &.ansi-lang-es::after {
+      content: "ATENCION";
+    }
+  }
+  &.ansi-notice {
+    @extend %panel;
+    color: white;
+    background-color: $ansi-blue;
+    &::after {
+      content: "NOTICE";
+    }
+    &.ansi-lang-de::after {
+      content: "HINWEIS";
+    }
+    &.ansi-lang-fr::after {
+      content: "AVIS";
+    }
+    &.ansi-lang-es::after {
+      content: "AVISO";
+    }
+  }
+  &.ansi-safety-instructions {
+    @extend %panel;
+    color: white;
+    background-color: $ansi-green;
+    &::after {
+      content: "Safety Instructions";
+    }
+    &.ansi-lang-de::after {
+      content: "Sicherheitshinweise";
+    }
+    &.ansi-lang-fr::after {
+      content: "Consignes de Sécurité";
+    }
+    &.ansi-lang-es::after {
+      content: "Instrucciones de Seguridad";
+    }
+  }
+}

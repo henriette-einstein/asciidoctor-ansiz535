@@ -91,8 +91,11 @@ Here is an extract of the translations
 | Spanish | PELIGRO | ADVERTENCIA | ATENCION | AVISO | Instrucciones de Seguridad
 |===
 
+[NOTE]
+====
 Other translations exist and may be supported. Since I am not familiar with these languages, I'll
 skip that here.
+====
 
 === The Safety Alert Symbol
 
@@ -201,11 +204,44 @@ image::images/Warning-BW.png[]
 This extension includes custom CSSes and an inline macro to generate signal panels 
 for the HTML output of AsciiDoctor.
 
-=== Basic Usage
-A signal panel is represented by an empty HTML <span> Element with a class attribute that has the prefix "ansi-signal-panel-" followed
-by the signal word.
+=== CSSes used by the extension
+Safety alert symbols and signal panels are represented by an empty HTML <span> Element with class 
+attributes that define, how the symbol or panel should be rendered. 
 
-The following classes are supported:
+The rendering is pure-CSS, including the rendering of the Safety alert symbol.
+The symbol-variants are provided as SVG graphics that are used by the stylesheet.
+
+The stylesheets are written in SASS and converted to CSS during the build phase.
+
+==== Safety Alert Symbol rendering
+The following CSS classes are used to control the rendering of the
+safety alert symbol
+
+:imagesdir: ../src/css
+
+|===
+| Class | Description | Renders
+
+| ansi-alert-black | The safety symbol in black with transparent background
+a| 
+--
+image::ANSI-Z535_black_transparent.svg[Static,40]
+
+| ansi-alert-black-solid | The safety symbol filled in black with transparent background
+a| 
+--
+image::ANSI-Z535_black_solid_transparent.svg[Static,40]
+
+| ansi-alert-white | The safety symbol in white with transparent background
+| -- NOT VISIBLE HERE --
+
+| ansi-alert-white-filled | The safety symbol filled in white with transparent background
+| -- NOT VISIBLE HERE --
+
+|===
+
+==== Safety Panel rendering
+The following CSS classes are supported:
 
 |===
 | Class | Description

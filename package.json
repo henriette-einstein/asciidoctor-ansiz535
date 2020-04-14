@@ -1,0 +1,24 @@
+{
+  "name": "asciidoctor-ansiz535",
+  "version": "0.9.0",
+  "description": "ANSI Z535 extensions for AsciiDoctor",
+  "scripts": {
+    "test": "gulp test",
+    "build": "gulp css"
+  },
+  "repository": "https://github.com/henriette-einstein/asciidoctor-ansiz535.git",
+  "author": "Armin Pfarr <arp@henriette-einstein.com>",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@henriette-einstein/gulp-asciidoctor": "^2.1.2",
+    "autoprefixer": "^9.7.5",
+    "del": "^5.1.0",
+    "gulp": "^4.0.2",
+    "gulp-changed": "^4.0.2",
+    "gulp-clean": "^0.4.0",
+    "gulp-dart-sass": "^0.9.1",
+    "gulp-imagemin": "^7.1.0",
+    "standard": "^14.3.3"
+  }
+}
