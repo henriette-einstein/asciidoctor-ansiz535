@@ -102,8 +102,9 @@ skip that here.
 The Safety Alert Symbol indicates a potential injury hazard. The Unicode glyph for the 
 Safety Alert Symbol is `U+26A0` (#9888 decimal)
 
-The symbol can be used in several flavours, which are described in the following tabel.
+:imagesdir: ../src/scss
 
+The symbol can be used in several flavours, which are described in the following table.
 [cols="2, 7"]
 |===
 |  Symbol | Description
@@ -217,7 +218,7 @@ The stylesheets are written in SASS and converted to CSS during the build phase.
 The following CSS classes are used to control the rendering of the
 safety alert symbol
 
-:imagesdir: ../src/css
+:imagesdir: ../src/scss
 
 |===
 | Class | Description | Renders
@@ -281,8 +282,7 @@ To change the language for the signal word, the following additional classes are
 
 === Example
 
-The file Z535-Overview-styles.html shows how to use the CSS classes. The rendered output in the
-browser is documented in the file Z535-Overview-styles.png.
+The file link:Z535-Overview-styles.html[] shows how to use the CSS classes. The rendered output in the browser is documented in the file link:Z535-Overview-styles.png[].
 
 == References
 

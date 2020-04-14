@@ -1,0 +1,41 @@
+= Signalpanels
+
+== Simple usage
+signalpanel:danger[]
+signalpanel:warning[]
+signalpanel:caution[]
+signalpanel:notice[]
+signalpanel:safety[]
+signalpanel:thisisnotcorrect[]
+
+== Signalpanel with borders
+signalpanel:danger-border[]
+signalpanel:warning-border[]
+signalpanel:caution-border[]
+signalpanel:notice-border[]
+signalpanel:safety-border[]
+
+== Signalpanel with color options
+signalpanel:danger[color=bw]
+signalpanel:danger[color=wb]
+
+== Signalpanel with language option de
+signalpanel:danger[lang=de]
+signalpanel:warning[lang=de]
+signalpanel:caution[lang=de]
+signalpanel:notice[lang=de]
+signalpanel:safety[lang=de]
+
+== Signalpanel with language option fr
+signalpanel:danger[lang=fr]
+signalpanel:warning[lang=fr]
+signalpanel:caution[lang=fr]
+signalpanel:notice[lang=fr]
+signalpanel:safety[lang=fr]
+
+== Signalpanel with language option es
+signalpanel:danger[lang=es]
+signalpanel:warning[lang=es]
+signalpanel:caution[lang=es]
+signalpanel:notice[lang=es]
+signalpanel:safety[lang=es]

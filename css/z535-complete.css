@@ -1,0 +1,146 @@
+@charset "UTF-8";
+@import 'asciidoctor.css';
+span.ansi-safety-instructions, span.ansi-notice, span.ansi-caution, span.ansi-warning, span.ansi-danger {
+  display: inline-flex;
+  align-items: center;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  padding-top: 0.1em;
+  padding-bottom: 0.1em;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+span.ansi-style-border.ansi-safety-instructions, span.ansi-style-border.ansi-notice, span.ansi-style-border.ansi-caution, span.ansi-style-border.ansi-warning, span.ansi-style-border.ansi-danger {
+  border: 1px solid black;
+}
+span.ansi-style-bw.ansi-safety-instructions, span.ansi-style-bw.ansi-notice, span.ansi-style-bw.ansi-caution, span.ansi-style-bw.ansi-warning, span.ansi-style-bw.ansi-danger {
+  color: black;
+  background-color: white;
+}
+span.ansi-style-wb.ansi-safety-instructions, span.ansi-style-wb.ansi-notice, span.ansi-style-wb.ansi-caution, span.ansi-style-wb.ansi-warning, span.ansi-style-wb.ansi-danger {
+  color: white;
+  background-color: black;
+}
+
+span.ansi-alert-white-solid::before, span.ansi-alert-white::before, span.ansi-alert-black-solid::before, span.ansi-alert-black::before, span.ansi-danger::before, span.ansi-caution::before, span.ansi-warning::before {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+  content: " ";
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  margin-right: 0.2em;
+}
+
+span.ansi-caution::before, span.ansi-warning::before {
+  background-image: url(ANSI-Z535_black_solid_transparent.svg);
+}
+span.ansi-style-wb.ansi-caution::before, span.ansi-style-wb.ansi-warning::before {
+  background-image: url(ANSI-Z535_white_solid_transparent.svg);
+}
+
+span.ansi-danger::before {
+  background-image: url(ANSI-Z535_white_solid_transparent.svg);
+}
+span.ansi-style-bw.ansi-danger::before {
+  background-image: url(ANSI-Z535_black_solid_transparent.svg);
+}
+
+span {
+  /** Panels */
+}
+span.ansi-alert-black::before {
+  background-image: url(ANSI-Z535_black_transparent.svg);
+}
+span.ansi-alert-black-solid::before {
+  background-image: url(ANSI-Z535_black_solid_transparent.svg);
+}
+span.ansi-alert-white::before {
+  background-image: url(ANSI-Z535_white_transparent.svg);
+}
+span.ansi-alert-white-solid::before {
+  background-image: url(ANSI-Z535_white_solid_transparent.svg);
+}
+span.ansi-danger {
+  color: white;
+  background-color: #c8102e;
+}
+span.ansi-danger::after {
+  content: "DANGER";
+}
+span.ansi-danger.ansi-lang-de::after {
+  content: "GEFAHR";
+}
+span.ansi-danger.ansi-lang-fr::after {
+  content: "DANGER";
+}
+span.ansi-danger.ansi-lang-es::after {
+  content: "PELIGRO";
+}
+span.ansi-warning {
+  color: black;
+  background-color: #ff8200;
+}
+span.ansi-warning::after {
+  content: "WARNING";
+}
+span.ansi-warning.ansi-lang-de::after {
+  content: "WARNUNG";
+}
+span.ansi-warning.ansi-lang-fr::after {
+  content: "AVERTISSEMENT";
+}
+span.ansi-warning.ansi-lang-es::after {
+  content: "ADVERTENCIA";
+}
+span.ansi-caution {
+  color: black;
+  background-color: #ffd100;
+}
+span.ansi-caution::after {
+  content: "CAUTION";
+}
+span.ansi-caution.ansi-lang-de::after {
+  content: "VORSICHT";
+}
+span.ansi-caution.ansi-lang-fr::after {
+  content: "ATTENTION";
+}
+span.ansi-caution.ansi-lang-es::after {
+  content: "ATENCION";
+}
+span.ansi-notice {
+  color: white;
+  background-color: #0072ce;
+}
+span.ansi-notice::after {
+  content: "NOTICE";
+}
+span.ansi-notice.ansi-lang-de::after {
+  content: "HINWEIS";
+}
+span.ansi-notice.ansi-lang-fr::after {
+  content: "AVIS";
+}
+span.ansi-notice.ansi-lang-es::after {
+  content: "AVISO";
+}
+span.ansi-safety-instructions {
+  color: white;
+  background-color: #007b5f;
+}
+span.ansi-safety-instructions::after {
+  content: "Safety Instructions";
+}
+span.ansi-safety-instructions.ansi-lang-de::after {
+  content: "Sicherheitshinweise";
+}
+span.ansi-safety-instructions.ansi-lang-fr::after {
+  content: "Consignes de Sécurité";
+}
+span.ansi-safety-instructions.ansi-lang-es::after {
+  content: "Instrucciones de Seguridad";
+}

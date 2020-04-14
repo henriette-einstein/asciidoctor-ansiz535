@@ -1,50 +1,59 @@
-const { src, dest, series, parallel } = require('gulp')
+const { src, dest, series } = require('gulp')
 const sass = require('gulp-dart-sass')
 const imagemin = require('gulp-imagemin')
 const changed = require('gulp-changed')
 const del = require('del')
-const asciidoc = require('@henriette-einstein/gulp-asciidoctor')
 
 const config = {
-    scss: 'src/scss/*.scss',
-    images: 'src/scss/*.svg',
-    testdata: 'doc/**/*.adoc',
-    testdir: 'tests',
-    distdir: 'dist'
-}
-
-function testData (cb) {
-    src(config.testdata)
-        .pipe(asciidoc())
-        .pipe(dest(config.testdir))
-    cb()
+  scss: 'src/scss/*.scss',
+  resources: 'src/scss/*.css',
+  images: 'src/scss/*.svg',
+  distdir: 'css'
 }
 
 /**
- * Create the CSS
- * @param {Callback} cb 
+ * Create the CSS in the CSS directory
+ * @param {Callback} cb
  */
 function css (cb) {
-    src(config.scss)
-        .pipe(sass().on('error', sass.logError))
-        .pipe(dest(config.distdir))
-    cb()
+  src(config.scss)
+    .pipe(sass().on('error', sass.logError))
+    .pipe(dest(config.distdir))
+  cb()
 }
 
+/**
+ * Copy the images to the CSS directory
+ * @param {Callback} cb
+ */
 function images (cb) {
-    src(config.images)
-        .pipe(changed(config.distdir))
-        .pipe(imagemin())
-        .pipe(dest(config.distdir))
-    cb()
+  src(config.images)
+    .pipe(changed(config.distdir))
+    .pipe(imagemin())
+    .pipe(dest(config.distdir))
+  cb()
 }
 
+/**
+ * Copy additional resources to the CSS directory
+ * @param {Callback} cb
+ */
+function resources (cb) {
+  src(config.resources)
+    .pipe(dest(config.distdir))
+  cb()
+}
+
+/**
+ * Remove the CSS directory
+ * @param {Callback} cb
+ */
 function clean () {
-    return del(config.distdir)
+  return del(config.distdir)
 }
 
 exports.css = css
 exports.clean = clean
 exports.images = images
-exports.test = series(css, testData)
-exports.build = series(clean, css, images)
+exports.resources = resources
+exports.build = series(clean, css, resources, images)

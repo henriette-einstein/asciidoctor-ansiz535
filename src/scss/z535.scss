@@ -38,11 +38,11 @@ $ansi-safety-word-font: Arial, Helvetica, sans-serif;
   background-repeat: no-repeat;
   background-position: center;
   vertical-align: middle;
-  content: "\00a0";
+  content: '\00a0';
   width: 1em;
   height: 1em;
   display: inline-block;
-  margin-right: 0.1em;
+  margin-right: 0.2em;
 }
 
 %black-image {
@@ -56,7 +56,7 @@ $ansi-safety-word-font: Arial, Helvetica, sans-serif;
 %white-image {
   @extend %image;
   background-image: url(ANSI-Z535_white_solid_transparent.svg);
-  &.ansi-style-wb::before {
+  &.ansi-style-bw::before {
     background-image: url(ANSI-Z535_black_solid_transparent.svg);
   }
 }
@@ -88,16 +88,16 @@ span {
       @extend %white-image;
     }
     &::after {
-      content: "DANGER";
+      content: 'DANGER';
     }
     &.ansi-lang-de::after {
-      content: "GEFAHR";
+      content: 'GEFAHR';
     }
     &.ansi-lang-fr::after {
-      content: "DANGER";
+      content: 'DANGER';
     }
     &.ansi-lang-es::after {
-      content: "PELIGRO";
+      content: 'PELIGRO';
     }
   }
 
@@ -109,16 +109,16 @@ span {
       @extend %black-image;
     }
     &::after {
-      content: "WARNING";
+      content: 'WARNING';
     }
     &.ansi-lang-de::after {
-      content: "WARNUNG";
+      content: 'WARNUNG';
     }
     &.ansi-lang-fr::after {
-      content: "AVERTISSEMENT";
+      content: 'AVERTISSEMENT';
     }
     &.ansi-lang-es::after {
-      content: "ADVERTENCIA";
+      content: 'ADVERTENCIA';
     }
   }
   &.ansi-caution {
@@ -129,16 +129,16 @@ span {
       @extend %black-image;
     }
     &::after {
-      content: "CAUTION";
+      content: 'CAUTION';
     }
     &.ansi-lang-de::after {
-      content: "VORSICHT";
+      content: 'VORSICHT';
     }
     &.ansi-lang-fr::after {
-      content: "ATTENTION";
+      content: 'ATTENTION';
     }
     &.ansi-lang-es::after {
-      content: "ATENCION";
+      content: 'ATENCION';
     }
   }
   &.ansi-notice {
@@ -146,16 +146,16 @@ span {
     color: white;
     background-color: $ansi-blue;
     &::after {
-      content: "NOTICE";
+      content: 'NOTICE';
     }
     &.ansi-lang-de::after {
-      content: "HINWEIS";
+      content: 'HINWEIS';
     }
     &.ansi-lang-fr::after {
-      content: "AVIS";
+      content: 'AVIS';
     }
     &.ansi-lang-es::after {
-      content: "AVISO";
+      content: 'AVISO';
     }
   }
   &.ansi-safety-instructions {
@@ -163,16 +163,16 @@ span {
     color: white;
     background-color: $ansi-green;
     &::after {
-      content: "Safety Instructions";
+      content: 'Safety Instructions';
     }
     &.ansi-lang-de::after {
-      content: "Sicherheitshinweise";
+      content: 'Sicherheitshinweise';
     }
     &.ansi-lang-fr::after {
-      content: "Consignes de Sécurité";
+      content: 'Consignes de Sécurité';
     }
     &.ansi-lang-es::after {
-      content: "Instrucciones de Seguridad";
+      content: 'Instrucciones de Seguridad';
     }
   }
 }
