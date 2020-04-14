@@ -1,3 +1,11 @@
+/**
+ * Asciidoctor inline macro "signalpanel"
+ *
+ * Copyright (c) 2020, Armin Pfarr
+ * Released under the MIT License
+ */
+'use strict'
+
 module.exports.register = function (registry) {
   registry.inlineMacro('signalpanel', function () {
     var self = this

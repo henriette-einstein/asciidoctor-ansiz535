@@ -1,7 +1,7 @@
 const path = require('path')
 const asciidoctor = require('asciidoctor')()
 const registry = asciidoctor.Extensions.create()
-require('../src/signalpanel-inline-macro-processor').register(registry)
+require('../index').register(registry)
 
 describe('Testing signalpanel macro', () => {
   it('should have registered the inline macro', () => {

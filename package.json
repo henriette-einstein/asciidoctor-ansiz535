@@ -2,6 +2,7 @@
   "name": "asciidoctor-ansiz535",
   "version": "0.9.0",
   "description": "ANSI Z535 extensions for AsciiDoctor",
+  "main": "index.js",
   "scripts": {
     "test": "jest",
     "build": "gulp build"
