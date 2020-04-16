@@ -1,7 +1,8 @@
-= AsciiDoctor and ANSI Z535
+= Asciidoctor and ANSI Z535
 :imagesdir: ../src/css
+:toc:
 
-This is a proposal for a custom extension of https://asciidoctor.org[AsciiDoctor] that provides
+This is a proposal for a custom extension of https://Asciidoctor.org[Asciidoctor] that provides
 support for the https://en.wikipedia.org/wiki/ANSI_Z535[ANSI Z535] standard (especially ANSI Z535.6 that defines requirements for technical documentation).
 
 == What is ANSI Z535
@@ -21,13 +22,13 @@ The most important sub-standards discussed here are
 * ANSI Z535.1 American National Standard for Safety Colors
 * ANSI Z535.6 American National Standard for Product Safety Information in Product Manuals, Instructions, and Other Collateral Materials
 
-== Why is that important for AsciiDoctor
+== Why is that important for Asciidoctor
 ANSI Z535 (especially ANSI535.1 and ANSI Z535.6) defines a set of legal rules, that technical writers have to adhere to write documentation that complies to legal rules.
 
-AsciiDoctor would be perfectly suited for technical documentation. However support for ANSI Z535 is
+Asciidoctor would be perfectly suited for technical documentation. However support for ANSI Z535 is
 not implemented and the Admonitions defined in AsciiDoc *do not fullfill* the requirements.
 
-To write ANSI Z535 compliant documentation, every author using AsciiDoctor would have to fiddle around with custom extensions 
+To write ANSI Z535 compliant documentation, every author using Asciidoctor would have to fiddle around with custom extensions 
 and custom CSSes to produce compliant HTML. However, even that would not be sufficient to produce compliant output in other output-formats like PDF. Most
 technical authors are not willing or not capable to implement such customizings and therefore 
 seek other solutions to write ANSI Z535 compliant documents.
@@ -201,9 +202,84 @@ Signal Panels may also be used in Black and White as demonstrated here:
 
 image::images/Warning-BW.png[]
 
-== Support of the ANSI Z535 Standard in AsciiDoctor
+== Support of the ANSI Z535 Standard in Asciidoctor
 This extension includes custom CSSes and an inline macro to generate signal panels 
-for the HTML output of AsciiDoctor.
+for the HTML output of Asciidoctor.
+
+=== Asciidoctor macros implemented by the extension
+
+==== Signalpanel Inline macro
+The inline macro *signalpanel* generates a span-Element with the <<#signalpanelcss,CSS-classes>> required for rendering
+a signalpanel. The type of panel taht will be rendered is determined by the target of the macro
+
+|===
+| Target | Sample | Result
+
+| danger | signalpanel:danger[] | <span class="ansi-danger"></span>
+| warning | signalpanel:warning[] | <span class="ansi-warning"></span>
+| caution | signalpanel:caution[] | <span class="ansi-caution"></span>
+| notice | signalpanel:notice[] | <span class="ansi-notice"></span>
+| safety | signalpanel:safety[] | <span class="ansi-safety-instructions"></span>
+
+|===
+
+If the panel shall have a border, prepend the target with *-border*
+
+|===
+| Target | Sample | Result
+
+| danger-border | signalpanel:danger-border[] | <span class="ansi-danger ansi-style-border"></span>
+| warning-border | signalpanel:warning-border[] | <span class="ansi-warning ansi-style-border"></span>
+| caution-border | signalpanel:caution-border[] | <span class="ansi-caution ansi-style-border"></span>
+| notice-border | signalpanel:notice-border[] | <span class="ansi-notice ansi-style-border"></span>
+| safety-border | signalpanel:safety-border[] | <span class="ansi-safety-instructions ansi-style-border"></span>
+
+|===
+
+If the panel shall be rendered in Black and White, use the *color*-option.
+
+If color is set to *bw*, the panel is rendered in black on a white background. 
+If color is set to *wb*, the panel is rendered in white on a black background. 
+
+The option can be used with every target.
+
+|===
+| Target | Sample | Result
+
+| danger | signalpanel:danger[color=bw] | <span class="ansi-danger ansi-style-bw"></span>
+| danger | signalpanel:danger[color=wb] | <span class="ansi-danger ansi-style-wb"></span>
+| warning | signalpanel:warning[color=bw] | <span class="ansi-warning ansi-style-bw"></span>
+| warning | signalpanel:warning[color=wb] | <span class="ansi-warning ansi-style-wb"></span>
+
+| ... | ... | ...
+
+|===
+
+To change the language for the signal word, the *lang*-option is provided. As for now, the
+following languages are supported
+
+* de
+* es
+* fr
+
+The option can be used with every target.
+
+|===
+| Target | Sample | Result
+
+| danger | signalpanel:danger[lang=de] | <span class="ansi-danger ansi-lang-de"></span>
+| danger | signalpanel:danger[lang=es] | <span class="ansi-danger ansi-lang-es"></span>
+| warning | signalpanel:warning[lang=fr] | <span class="ansi-warning ansi-lang-fr"></span>
+| warning | signalpanel:warning[lang=de] | <span class="ansi-warning ansi-lang-de"></span>
+| ... | ... | ...
+
+|===
+
+
+Typical usage:
+----
+Place a danger panel with a border and german text here => signalpanel:danger-border[lang='de']
+----
 
 === CSSes used by the extension
 Safety alert symbols and signal panels are represented by an empty HTML <span> Element with class 
@@ -212,7 +288,8 @@ attributes that define, how the symbol or panel should be rendered.
 The rendering is pure-CSS, including the rendering of the Safety alert symbol.
 The symbol-variants are provided as SVG graphics that are used by the stylesheet.
 
-The stylesheets are written in SASS and converted to CSS during the build phase.
+The stylesheets are written in SASS and converted to CSS with a *gulp*-script. If you want to
+play around with the stylesheets, please read the <<gulpcss, CSS processing instructions>> first
 
 ==== Safety Alert Symbol rendering
 The following CSS classes are used to control the rendering of the
@@ -227,12 +304,12 @@ safety alert symbol
 a| 
 --
 image::ANSI-Z535_black_transparent.svg[Static,40]
-
+--
 | ansi-alert-black-solid | The safety symbol filled in black with transparent background
 a| 
 --
 image::ANSI-Z535_black_solid_transparent.svg[Static,40]
-
+--
 | ansi-alert-white | The safety symbol in white with transparent background
 | -- NOT VISIBLE HERE --
 
@@ -241,7 +318,8 @@ image::ANSI-Z535_black_solid_transparent.svg[Static,40]
 
 |===
 
-==== Safety Panel rendering
+[#signalpanelcss]
+==== Signal Panel rendering
 The following CSS classes are supported:
 
 |===
@@ -283,6 +361,9 @@ To change the language for the signal word, the following additional classes are
 === Example
 
 The file link:Z535-Overview-styles.html[] shows how to use the CSS classes. The rendered output in the browser is documented in the file link:Z535-Overview-styles.png[].
+
+[#gulpcss]
+== CSS Proocessing Instructions
 
 == References
 

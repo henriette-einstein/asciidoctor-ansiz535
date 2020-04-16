@@ -7,8 +7,13 @@ $ansi-purple: #6d2077;
 
 $ansi-safety-word-font: Arial, Helvetica, sans-serif;
 
+$img-black-transparent: svg-load('ANSI-Z535_black_transparent.svg');
+$img-black-solid-transparent: svg-load('ANSI-Z535_black_solid_transparent.svg');
+$img-white-transparent: svg-load('ANSI-Z535_white_transparent.svg');
+$img-white-solid-transparent: svg-load('ANSI-Z535_white_solid_transparent.svg');
+
 %panel {
-  display: inline-flex;
+  display: inline-block;
   align-items: center;
   padding-left: 0.5em;
   padding-right: 0.5em;
@@ -47,132 +52,137 @@ $ansi-safety-word-font: Arial, Helvetica, sans-serif;
 
 %black-image {
   @extend %image;
-  background-image: url(ANSI-Z535_black_solid_transparent.svg);
+  background-image: $img-black-solid-transparent;
   &.ansi-style-wb::before {
-    background-image: url(ANSI-Z535_white_solid_transparent.svg);
+    background-image: $img-white-solid-transparent;
   }
 }
 
 %white-image {
   @extend %image;
-  background-image: url(ANSI-Z535_white_solid_transparent.svg);
+  background-image: $img-white-solid-transparent;
   &.ansi-style-bw::before {
-    background-image: url(ANSI-Z535_black_solid_transparent.svg);
+    background-image: $img-black-solid-transparent;
   }
 }
 
-span {
-  &.ansi-alert-black::before {
-    @extend %image;
-    background-image: url(ANSI-Z535_black_transparent.svg);
-  }
-  &.ansi-alert-black-solid::before {
-    @extend %image;
-    background-image: url(ANSI-Z535_black_solid_transparent.svg);
-  }
-  &.ansi-alert-white::before {
-    @extend %image;
-    background-image: url(ANSI-Z535_white_transparent.svg);
-  }
-  &.ansi-alert-white-solid::before {
-    @extend %image;
-    background-image: url(ANSI-Z535_white_solid_transparent.svg);
-  }
+span.ansi-alert-black::before {
+  @extend %image;
+  background-image: $img-black-transparent;
+}
+span.ansi-alert-black-solid::before {
+  @extend %image;
+  background-image: $img-black-solid-transparent;
+}
+span.ansi-alert-white::before {
+  @extend %image;
+  background-image: $img-white-transparent;
+}
+span.ansi-alert-white-solid::before {
+  @extend %image;
+  background-image: $img-white-solid-transparent;
+}
 
-  /** Panels */
-  &.ansi-danger {
-    @extend %panel;
-    color: white;
-    background-color: $ansi-red;
-    &::before {
-      @extend %white-image;
-    }
-    &::after {
-      content: 'DANGER';
-    }
-    &.ansi-lang-de::after {
-      content: 'GEFAHR';
-    }
-    &.ansi-lang-fr::after {
-      content: 'DANGER';
-    }
-    &.ansi-lang-es::after {
-      content: 'PELIGRO';
-    }
+span.ansi-danger {
+  @extend %panel;
+  color: white;
+  background-color: $ansi-red;
+  &::before {
+    @extend %white-image;
   }
+  &::after {
+    vertical-align: middle;
+    content: 'DANGER';
+  }
+  &.ansi-lang-de::after {
+    content: 'GEFAHR';
+  }
+  &.ansi-lang-fr::after {
+    content: 'DANGER';
+  }
+  &.ansi-lang-es::after {
+    content: 'PELIGRO';
+  }
+}
 
-  &.ansi-warning {
-    @extend %panel;
-    color: black;
-    background-color: $ansi-orange;
-    &::before {
-      @extend %black-image;
-    }
-    &::after {
-      content: 'WARNING';
-    }
-    &.ansi-lang-de::after {
-      content: 'WARNUNG';
-    }
-    &.ansi-lang-fr::after {
-      content: 'AVERTISSEMENT';
-    }
-    &.ansi-lang-es::after {
-      content: 'ADVERTENCIA';
-    }
+span.ansi-warning {
+  @extend %panel;
+  color: black;
+  background-color: $ansi-orange;
+  &::before {
+    @extend %black-image;
   }
-  &.ansi-caution {
-    @extend %panel;
-    color: black;
-    background-color: $ansi-yellow;
-    &::before {
-      @extend %black-image;
-    }
-    &::after {
-      content: 'CAUTION';
-    }
-    &.ansi-lang-de::after {
-      content: 'VORSICHT';
-    }
-    &.ansi-lang-fr::after {
-      content: 'ATTENTION';
-    }
-    &.ansi-lang-es::after {
-      content: 'ATENCION';
-    }
+  &::after {
+    vertical-align: middle;
+    content: 'WARNING';
   }
-  &.ansi-notice {
-    @extend %panel;
-    color: white;
-    background-color: $ansi-blue;
-    &::after {
-      content: 'NOTICE';
-    }
-    &.ansi-lang-de::after {
-      content: 'HINWEIS';
-    }
-    &.ansi-lang-fr::after {
-      content: 'AVIS';
-    }
-    &.ansi-lang-es::after {
-      content: 'AVISO';
-    }
+  &.ansi-lang-de::after {
+    content: 'WARNUNG';
   }
-  &.ansi-safety-instructions {
-    @extend %panel;
-    color: white;
-    background-color: $ansi-green;
-    &::after {
-      content: 'Safety Instructions';
-    }
-    &.ansi-lang-de::after {
-      content: 'Sicherheitshinweise';
-    }
-    &.ansi-lang-fr::after {
-      content: 'Consignes de Sécurité';
-    }
-    &.ansi-lang-es::after {
-      content: 'Instrucciones de Seguridad';
-    }
+  &.ansi-lang-fr::after {
+    content: 'AVERTISSEMENT';
+  }
+  &.ansi-lang-es::after {
+    content: 'ADVERTENCIA';
+  }
+}
+
+span.ansi-caution {
+  @extend %panel;
+  color: black;
+  background-color: $ansi-yellow;
+  &::before {
+    @extend %black-image;
+  }
+  &::after {
+    vertical-align: middle;
+    content: 'CAUTION';
+  }
+  &.ansi-lang-de::after {
+    content: 'VORSICHT';
+  }
+  &.ansi-lang-fr::after {
+    content: 'ATTENTION';
+  }
+  &.ansi-lang-es::after {
+    content: 'ATENCION';
+  }
+}
+
+span.ansi-notice {
+  @extend %panel;
+  color: white;
+  background-color: $ansi-blue;
+  &::after {
+    vertical-align: middle;
+    content: 'NOTICE';
+  }
+  &.ansi-lang-de::after {
+    content: 'HINWEIS';
+  }
+  &.ansi-lang-fr::after {
+    content: 'AVIS';
+  }
+  &.ansi-lang-es::after {
+    content: 'AVISO';
+  }
+}
+
+span.ansi-safety-instructions {
+  @extend %panel;
+  color: white;
+  background-color: $ansi-green;
+  &::after {
+    vertical-align: middle;
+    content: 'Safety Instructions';
+  }
+  &.ansi-lang-de::after {
+    content: 'Sicherheitshinweise';
+  }
+  &.ansi-lang-fr::after {
+    content: 'Consignes de Sécurité';
+  }
+  &.ansi-lang-es::after {
+    content: 'Instrucciones de Seguridad';
   }
 }

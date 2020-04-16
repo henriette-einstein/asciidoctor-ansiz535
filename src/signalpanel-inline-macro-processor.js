@@ -40,7 +40,7 @@ module.exports.register = function (registry) {
       if (opts.lang !== undefined) {
         text += ' ' + 'ansi-lang-' + opts.lang
       }
-      const span = `<span class="${text}"/>`
+      const span = `<span class="${text}"></span>`
       return span
     })
   })

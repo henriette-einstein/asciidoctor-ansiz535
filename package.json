@@ -3,6 +3,10 @@
   "version": "0.9.0",
   "description": "ANSI Z535 extensions for AsciiDoctor",
   "main": "index.js",
+  "bin": {
+    "asciidoctor-ansiz535": "bin/asciidoctor-ansiz535",
+    "asciidoctor-z535": "bin/asciidoctor-ansiz535"
+  },
   "scripts": {
     "test": "jest",
     "build": "gulp build"
@@ -10,17 +14,31 @@
   "repository": "https://github.com/henriette-einstein/asciidoctor-ansiz535.git",
   "author": "Armin Pfarr <arp@henriette-einstein.com>",
   "license": "MIT",
-  "dependencies": {},
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "asciidoctor",
+    "ansiz535"
+  ],
+  "dependencies": {
+    "@asciidoctor/cli": "^3.4.0",
+    "@asciidoctor/core": "^2.1.1"
+  },
   "devDependencies": {
-    "asciidoctor": "^2.1.1",
     "autoprefixer": "^9.7.5",
     "del": "^5.1.0",
     "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
     "gulp-changed": "^4.0.2",
     "gulp-clean": "^0.4.0",
+    "gulp-cssimport": "^7.0.0",
     "gulp-dart-sass": "^0.9.1",
     "gulp-imagemin": "^7.1.0",
+    "gulp-postcss": "^8.0.0",
     "jest": "^25.3.0",
+    "postcss-import": "^12.0.1",
+    "postcss-inline-svg": "^4.1.0",
     "standard": "^14.3.3"
   },
   "standard": {

@@ -29,7 +29,7 @@ npm install @henriette-einstein/asciidoctor-ansiz535
 const ospath = require('path')
 const asciidoctor = require('asciidoctor')()
 const registry = asciidoctor.Extensions.create()
-require('asciidoctor-ansiz535).register(registry)
+require('asciidoctor-ansiz535').register(registry)
 
 // Then locate the stylesheet
 const stylepath = path.join(process.cwd(),'node_modules/asciidoctor-ansiz535/css/z535-complete.css')

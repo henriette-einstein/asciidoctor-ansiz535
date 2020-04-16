@@ -1,8 +1,11 @@
 const { src, dest, series } = require('gulp')
 const sass = require('gulp-dart-sass')
+const postcss = require('gulp-postcss')
 const imagemin = require('gulp-imagemin')
 const changed = require('gulp-changed')
 const del = require('del')
+const atimport = require('postcss-import')
+const inlinesvg = require('postcss-inline-svg')
 
 const config = {
   scss: 'src/scss/*.scss',
@@ -16,8 +19,13 @@ const config = {
  * @param {Callback} cb
  */
 function css (cb) {
+  const plugins = [
+    atimport,
+    inlinesvg
+  ]
   src(config.scss)
     .pipe(sass().on('error', sass.logError))
+    .pipe(postcss(plugins))
     .pipe(dest(config.distdir))
   cb()
 }
