@@ -26,16 +26,15 @@
     "@asciidoctor/core": "^2.1.1"
   },
   "devDependencies": {
-    "autoprefixer": "^9.7.5",
+    "autoprefixer": "^9.7.6",
     "del": "^5.1.0",
     "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^7.0.1",
     "gulp-changed": "^4.0.2",
     "gulp-clean": "^0.4.0",
-    "gulp-cssimport": "^7.0.0",
     "gulp-dart-sass": "^0.9.1",
     "gulp-imagemin": "^7.1.0",
     "gulp-postcss": "^8.0.0",
+    "gulp-sourcemaps": "^2.6.5",
     "jest": "^25.3.0",
     "postcss-import": "^12.0.1",
     "postcss-inline-svg": "^4.1.0",
@@ -45,5 +44,18 @@
     "env": [
       "jest"
     ]
-  }
+  },
+  "browserslist": [
+    "> 1%",
+    "ie >= 8",
+    "edge >= 15",
+    "ie_mob >= 10",
+    "ff >= 45",
+    "chrome >= 45",
+    "safari >= 7",
+    "opera >= 23",
+    "ios >= 7",
+    "android >= 4",
+    "bb >= 10"
+  ]
 }

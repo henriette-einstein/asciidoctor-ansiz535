@@ -17,18 +17,30 @@ class AnsiInvoker extends Invoker {
       this.showHelp()
       return { exit: true }
     }
+    cliOptions.options.attributes = cliOptions.options.attributes || []
+    const stylesdir = cliOptions.options.attributes.filter(entry => entry.startsWith('stylesdir'))
+    if (stylesdir.length === 0) {
+      cliOptions.options.attributes.push('stylesdir=' + ansiz535.stylesdir())
+    }
+    const stylesheet = cliOptions.options.attributes.filter(entry => entry.startsWith('stylesheet'))
+    if (stylesheet.length === 0) {
+      cliOptions.options.attributes.push('stylesheet=' + ansiz535.stylesheet())
+    }
+
     if (verbose) {
       this.showVersion()
     }
-    Invoker.prepareProcessor(cliOptions, processor)
+    console.log(cliOptions.options)
     const registry = processor.Extensions.create()
     ansiz535.register(registry)
-    console.log(ansiz535.stylesheet_complete())
+    Invoker.prepareProcessor(cliOptions, processor)
     const asciidoctorOptions = Object.assign({},
       cliOptions.options,
-      { extension_registry: registry }
+      {
+        extension_registry: registry
+      }
     )
-
+    console.log(asciidoctorOptions)
     for (const file of files) {
       if (verbose) {
         console.log(`converting file ${file}`)

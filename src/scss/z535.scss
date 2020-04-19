@@ -7,11 +7,6 @@ $ansi-purple: #6d2077;
 
 $ansi-safety-word-font: Arial, Helvetica, sans-serif;
 
-$img-black-transparent: svg-load('ANSI-Z535_black_transparent.svg');
-$img-black-solid-transparent: svg-load('ANSI-Z535_black_solid_transparent.svg');
-$img-white-transparent: svg-load('ANSI-Z535_white_transparent.svg');
-$img-white-solid-transparent: svg-load('ANSI-Z535_white_solid_transparent.svg');
-
 %panel {
   display: inline-block;
   align-items: center;
@@ -52,35 +47,35 @@ $img-white-solid-transparent: svg-load('ANSI-Z535_white_solid_transparent.svg');
 
 %black-image {
   @extend %image;
-  background-image: $img-black-solid-transparent;
+  background-image: svg-load('ANSI-Z535_black_solid_transparent.svg');
   &.ansi-style-wb::before {
-    background-image: $img-white-solid-transparent;
+    background-image: svg-load('ANSI-Z535_white_solid_transparent.svg');
   }
 }
 
 %white-image {
   @extend %image;
-  background-image: $img-white-solid-transparent;
+  background-image: svg-load('ANSI-Z535_white_solid_transparent.svg');
   &.ansi-style-bw::before {
-    background-image: $img-black-solid-transparent;
+    background-image: svg-load('ANSI-Z535_black_transparent.svg');
   }
 }
 
 span.ansi-alert-black::before {
   @extend %image;
-  background-image: $img-black-transparent;
+  background-image: svg-load('ANSI-Z535_black_transparent.svg');
 }
 span.ansi-alert-black-solid::before {
   @extend %image;
-  background-image: $img-black-solid-transparent;
+  background-image: svg-load('ANSI-Z535_black_solid_transparent.svg');
 }
 span.ansi-alert-white::before {
   @extend %image;
-  background-image: $img-white-transparent;
+  background-image: svg-load('ANSI-Z535_white_transparent.svg');
 }
 span.ansi-alert-white-solid::before {
   @extend %image;
-  background-image: $img-white-solid-transparent;
+  background-image: svg-load('ANSI-Z535_white_solid_transparent.svg');
 }
 
 span.ansi-danger {

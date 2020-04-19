@@ -1,0 +1,22 @@
+$ansi-red: #c8102e;
+$ansi-orange: #ff8200;
+$ansi-yellow: #ffd100;
+$ansi-green: #007b5f;
+$ansi-blue: #0072ce;
+$ansi-purple: #6d2077;
+
+$ansi-safety-word-font: Arial, Helvetica, sans-serif;
+
+:root {
+  /* SVG are used as CSS-Variables to prevent them from being
+   * embedded multiple times by svg-load
+   */
+  --img-black-transparent: svg-load('ANSI-Z535_black_transparent.svg');
+  --img-black-solid-transparent: svg-load(
+    'ANSI-Z535_black_solid_transparent.svg'
+  );
+  --img-white-transparent: svg-load('ANSI-Z535_white_transparent.svg');
+  --img-white-solid-transparent: svg-load(
+    'ANSI-Z535_white_solid_transparent.svg'
+  );
+}

@@ -31,26 +31,31 @@ const asciidoctor = require('asciidoctor')()
 const registry = asciidoctor.Extensions.create()
 require('asciidoctor-ansiz535').register(registry)
 
-// Then locate the stylesheet
-const stylepath = path.join(process.cwd(),'node_modules/asciidoctor-ansiz535/css/z535-complete.css')
+// Then locate the stylesheet. This is just an example. Better place the stylesheets
+// somewhere in yout project and refernce them locally
+const pStylesdir = path.join(process.cwd(),'node_modules/asciidoctor-ansiz535/css/')
+const pStylesheet = 'z535-complete.css'
 
 // Then invoke the conversion
 const opts = {
   extension_registry: registry,
-  stylesheet: stylepath
+  attributes: {
+    stylesdir: pStylesdir,
+    stylesheet: pStylesheet
+  }
 }
 const result = asciidoctor.convertFile(path.join(__dirname, 'Your filename goes here.adoc'), opts)
 
 ```
 
-### Use in Asciidoctor CLI
+### Use the CLI
 
 First you have to download the extension and unpack it.
 
 Then you can use it in the CLI via
 
 ```
-asciidoctor -r <PATH TO DIRECTORY>/index.js -a stylesheet=<PATH TO DIRECTORY>/css/z535-complete.css <File to convert>
+bin/asciidoctor-ansiz535.js  <File to convert>
 
 ```
 

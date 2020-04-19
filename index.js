@@ -12,9 +12,9 @@ const signalpanelMacro = require('./src/signalpanel-inline-macro-processor')
 module.exports.register = function (registry) {
   signalpanelMacro.register(registry)
 }
-module.exports.stylesheet_complete = function () {
-  return ospath.join(__dirname, 'css/Z535-complete.css')
+module.exports.stylesdir = function () {
+  return ospath.join(__dirname, 'css')
 }
 module.exports.stylesheet = function () {
-  return ospath.join(__dirname, 'css/Z535.css')
+  return 'Z535-complete.css'
 }

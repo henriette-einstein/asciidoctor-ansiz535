@@ -6,10 +6,11 @@ const changed = require('gulp-changed')
 const del = require('del')
 const atimport = require('postcss-import')
 const inlinesvg = require('postcss-inline-svg')
+const autoprefixer = require('autoprefixer')
+// const sourcemaps = require('gulp-sourcemaps')
 
 const config = {
   scss: 'src/scss/*.scss',
-  resources: 'src/scss/*.css',
   images: 'src/scss/*.svg',
   distdir: 'css'
 }
@@ -18,15 +19,19 @@ const config = {
  * Create the CSS in the CSS directory
  * @param {Callback} cb
  */
-function css (cb) {
+function generateCSS (cb) {
   const plugins = [
     atimport,
-    inlinesvg
+    inlinesvg,
+    autoprefixer({ cascade: false })
   ]
   src(config.scss)
     .pipe(sass().on('error', sass.logError))
+    // .pipe(sourcemaps.init())
     .pipe(postcss(plugins))
+    // .pipe(sourcemaps.write('.'))
     .pipe(dest(config.distdir))
+
   cb()
 }
 
@@ -43,16 +48,6 @@ function images (cb) {
 }
 
 /**
- * Copy additional resources to the CSS directory
- * @param {Callback} cb
- */
-function resources (cb) {
-  src(config.resources)
-    .pipe(dest(config.distdir))
-  cb()
-}
-
-/**
  * Remove the CSS directory
  * @param {Callback} cb
  */
@@ -60,8 +55,6 @@ function clean () {
   return del(config.distdir)
 }
 
-exports.css = css
 exports.clean = clean
 exports.images = images
-exports.resources = resources
-exports.build = series(clean, css, resources, images)
+exports.build = series(clean, images, generateCSS)
