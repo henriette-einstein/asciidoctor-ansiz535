@@ -1,5 +1,5 @@
 const { src, dest, series } = require('gulp')
-const sass = require('gulp-dart-sass')
+const sass = require('gulp-sass')
 const postcss = require('gulp-postcss')
 const imagemin = require('gulp-imagemin')
 const changed = require('gulp-changed')
@@ -7,7 +7,6 @@ const del = require('del')
 const atimport = require('postcss-import')
 const inlinesvg = require('postcss-inline-svg')
 const autoprefixer = require('autoprefixer')
-// const sourcemaps = require('gulp-sourcemaps')
 
 const config = {
   scss: 'src/scss/*.scss',
@@ -19,32 +18,29 @@ const config = {
  * Create the CSS in the CSS directory
  * @param {Callback} cb
  */
-function generateCSS (cb) {
+function generateCSS () {
   const plugins = [
     atimport,
     inlinesvg,
     autoprefixer({ cascade: false })
   ]
-  src(config.scss)
-    .pipe(sass().on('error', sass.logError))
-    // .pipe(sourcemaps.init())
+  return src(config.scss)
+    .pipe(sass.sync()
+      .on('error', sass.logError))
+    .pipe(dest('tmp'))
     .pipe(postcss(plugins))
-    // .pipe(sourcemaps.write('.'))
     .pipe(dest(config.distdir))
-
-  cb()
 }
 
 /**
  * Copy the images to the CSS directory
  * @param {Callback} cb
  */
-function images (cb) {
-  src(config.images)
+function images () {
+  return src(config.images)
     .pipe(changed(config.distdir))
     .pipe(imagemin())
-    .pipe(dest(config.distdir))
-  cb()
+    .pipe(dest('tmp'))
 }
 
 /**
@@ -52,9 +48,15 @@ function images (cb) {
  * @param {Callback} cb
  */
 function clean () {
-  return del(config.distdir)
+  return del([config.distdir, 'tmp'])
 }
 
-exports.clean = clean
-exports.images = images
-exports.build = series(clean, images, generateCSS)
+function cleanTemp () {
+  return del('tmp')
+}
+
+const css = series(images, generateCSS, cleanTemp)
+
+exports.css = css
+exports.clean = series(clean, cleanTemp)
+exports.build = series(clean, css)
